@@ -11,7 +11,8 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
-import HomePage from 'containers/HomePage/Loadable';
+import ShoppingList from 'containers/ShoppingList/Loadable';
+import ShoppingCart from 'containers/ShoppingCart/Loadable';
 import Footer from 'components/Footer';
 
 import GlobalStyle from '../../global-styles';
@@ -28,14 +29,12 @@ const AppWrapper = styled.div`
 export default function App() {
   return (
     <AppWrapper>
-      <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-      >
-        <meta name="description" content="A React.js Boilerplate application" />
+      <Helmet titleTemplate="%s - Go Shop" defaultTitle="Go Shop">
+        <meta name="description" content="Go Shop" />
       </Helmet>
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/" component={ShoppingList} />
+        <Route exact path="/cart" component={ShoppingCart} />
       </Switch>
       <Footer />
       <GlobalStyle />

@@ -1,6 +1,6 @@
 {
   "boilerplate.components.Footer.author.message": "Mit Liebe gemacht von {author}.",
-  "boilerplate.components.Footer.license.message": "Dieses Projekt wird unter der MIT-Lizenz veröffentlicht.",
+  "boilerplate.components.Footer.license.message": "Dieses Projekt ist nicht lizenziert.",
   "boilerplate.containers.HomePage.start_project.header": "Beginnen Sie Ihr nächstes React Projekt in Sekunden",
   "boilerplate.containers.HomePage.start_project.message": "Ein skalierendes, offline-first Fundament mit der besten DX und einem Fokus auf Performance und bewährte Methoden",
   "boilerplate.containers.HomePage.tryme.atPrefix": "",
