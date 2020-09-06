@@ -3,17 +3,16 @@
 exports[`<App /> should render and match the snapshot 1`] = `
 <ForwardRef>
   <HelmetWrapper
-    defaultTitle="React.js Boilerplate"
+    defaultTitle="Go Shop"
     defer={true}
     encodeSpecialCharacters={true}
-    titleTemplate="%s - React.js Boilerplate"
+    titleTemplate="%s - Go Shop"
   >
     <meta
-      content="A React.js Boilerplate application"
+      content="Go Shop"
       name="description"
     />
   </HelmetWrapper>
-  <Header />
   <Switch>
     <Route
       component={[Function]}
@@ -22,11 +21,8 @@ exports[`<App /> should render and match the snapshot 1`] = `
     />
     <Route
       component={[Function]}
-      path="/features"
-    />
-    <Route
-      component={[Function]}
-      path=""
+      exact={true}
+      path="/cart"
     />
   </Switch>
   <Footer />
