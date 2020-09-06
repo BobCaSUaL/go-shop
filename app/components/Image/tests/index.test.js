@@ -15,10 +15,10 @@ describe('<Img />', () => {
     expect(element).not.toBeNull();
   });
 
-  it('should have an src attribute', () => {
+  it('should have a source attribute', () => {
     const { container } = renderComponent();
     const element = container.querySelector('img');
-    expect(element.hasAttribute('src')).toBe(true);
+    expect(element.hasAttribute('source')).toBe(true);
   });
 
   it('should have an alt attribute', () => {

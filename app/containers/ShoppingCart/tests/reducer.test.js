@@ -1,14 +1,12 @@
 // import produce from 'immer';
-import shoppingCartReducer from '../reducer';
+import shoppingCartReducer, { initialState } from '../reducer';
 // import { someAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
 describe('shoppingCartReducer', () => {
   let state;
   beforeEach(() => {
-    state = {
-      // default state params here
-    };
+    state = JSON.parse(JSON.stringify(initialState));
   });
 
   it('returns the initial state', () => {
