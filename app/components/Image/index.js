@@ -8,15 +8,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Img(props) {
-  return <img className={props.className} source={props.src} alt={props.alt} />;
+function Image(props) {
+  return <img className={props.className} src={props.source} alt={props.alt} />;
 }
 
 // We require the use of src and alt, only enforced by react in dev mode
-Img.propTypes = {
-  src: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
-  alt: PropTypes.string.isRequired,
+Image.propTypes = {
+  source: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  alt: PropTypes.string,
   className: PropTypes.string,
 };
 
-export default Img;
+export default Image;
