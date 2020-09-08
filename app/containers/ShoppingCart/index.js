@@ -19,6 +19,7 @@ import {
   selectShippingMethod,
   selectShippingMethodOptions,
   selectProductListTotal,
+  selectGrandTotal,
 } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -32,6 +33,7 @@ export function ShoppingCart({
   productListTotal,
   shippingMethodOptions,
   shippingMethod,
+  grandTotal,
 }) {
   useInjectReducer({ key: 'shoppingCart', reducer });
   useInjectSaga({ key: 'shoppingCart', saga });
@@ -90,6 +92,10 @@ export function ShoppingCart({
             <div>{intl.formatMessage(messages.subTotalTitle)}</div>
             <div>{`${new Currency(productListTotal)}`}</div>
           </div>
+          <div>
+            <div>{intl.formatMessage(messages.grantTotlaTitle)}</div>
+            <div>{`${new Currency(grandTotal)}`}</div>
+          </div>
         </Panel>
       </div>
     </div>
@@ -108,6 +114,7 @@ ShoppingCart.propTypes = {
   productListTotal: PricePropType,
   shippingMethodOptions: PropTypes.arrayOf(ShippingMethodProptype).isRequired,
   shippingMethod: ShippingMethodProptype,
+  grandTotal: PricePropType,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -115,6 +122,7 @@ const mapStateToProps = createStructuredSelector({
   productListTotal: selectProductListTotal,
   shippingMethod: selectShippingMethod,
   shippingMethodOptions: selectShippingMethodOptions,
+  grandTotal: selectGrandTotal,
 });
 
 function mapDispatchToProps(dispatch) {

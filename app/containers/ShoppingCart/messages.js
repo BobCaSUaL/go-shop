@@ -33,4 +33,8 @@ export default defineMessages({
     id: `${scope}.subTotalTitle`,
     defaultMessage: 'Subtotal',
   },
+  grantTotlaTitle: {
+    id: `${scope}.grantTotlaTitle`,
+    defaultMessage: 'Subtotal',
+  },
 });
