@@ -24,7 +24,7 @@ export const initialState = {
   productList: {
     'p-6005': {
       id: 'p-6005',
-      thumbnail: null,
+      thumbnail: 'https://picsum.photos/seed/p-6005/100/120',
       title: 'Sculpture of whatever it is',
       price: '99.99€',
       quantity: 2,
@@ -32,7 +32,7 @@ export const initialState = {
     },
     'p-6057': {
       id: 'p-6057',
-      thumbnail: null,
+      thumbnail: 'https://picsum.photos/seed/p-6057/100/120',
       title: 'Statue of the three graces',
       price: '156.06€',
       quantity: 1,
