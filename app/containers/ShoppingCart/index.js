@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -51,6 +51,7 @@ export function ShoppingCart({
   productListTotal,
   shippingMethodOptions,
   shippingMethod,
+  onShippingMethodChange,
   grandTotal,
 }) {
   useInjectReducer({ key: 'shoppingCart', reducer });
@@ -58,7 +59,14 @@ export function ShoppingCart({
 
   const intl = useIntl();
 
-  const onChangeShippingMethod = () => {};
+  const handleChangeShippingMethodClick = useCallback(
+    event => {
+      onShippingMethodChange(
+        shippingMethodOptions.find(({ id }) => id === event.target.value),
+      );
+    },
+    [shippingMethodOptions],
+  );
 
   return (
     <div>
@@ -83,7 +91,7 @@ export function ShoppingCart({
           className="report"
           title={intl.formatMessage(messages.reportTitle)}
         >
-          <div onChange={onChangeShippingMethod}>
+          <div>
             <ul className="shipping-method-list">
               <div className="title">
                 {intl.formatMessage(messages.shippingMethodTitle)}
@@ -95,7 +103,10 @@ export function ShoppingCart({
                     type="radio"
                     name="shipping-method"
                     value={option.id}
-                    checked={shippingMethod && option.id === shippingMethod.id}
+                    checked={
+                      !!shippingMethod && option.id === shippingMethod.id
+                    }
+                    onChange={handleChangeShippingMethodClick}
                   />
                   <div className="label-container">
                     <label htmlFor={option.id}>{option.title}</label>
@@ -132,22 +143,22 @@ ShoppingCart.propTypes = {
   productListTotal: PricePropType,
   shippingMethodOptions: PropTypes.arrayOf(ShippingMethodProptype).isRequired,
   shippingMethod: ShippingMethodProptype,
+  onShippingMethodChange: PropTypes.func.isRequired,
   grandTotal: PricePropType,
 };
 
 const mapStateToProps = createStructuredSelector({
   productList: selectProductList,
   productListTotal: selectProductListTotal,
-  shippingMethod: selectShippingMethod,
   shippingMethodOptions: selectShippingMethodOptions,
+  shippingMethod: selectShippingMethod,
   grandTotal: selectGrandTotal,
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
+const mapDispatchToProps = {
+  onShippingMethodChange: shippingMethod =>
+    actions.setShippingMethod(null, shippingMethod),
+};
 
 const withConnect = connect(
   mapStateToProps,

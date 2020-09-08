@@ -4,7 +4,7 @@
  *
  */
 import produce from 'immer';
-import { SET_PRODUCT_QUANTITY } from './constants';
+import { SET_PRODUCT_QUANTITY, SET_SHIPPING_METHOD } from './constants';
 
 export const initialState = {
   shippingMethodOptions: [
@@ -66,6 +66,10 @@ const shoppingCartReducer = (state = initialState, action) =>
           break;
         }
         draft.productList[action.meta.id].quantity = action.payload || 0;
+        break;
+
+      case SET_SHIPPING_METHOD:
+        draft.shippingMethod = action.payload || null;
         break;
     }
   });
