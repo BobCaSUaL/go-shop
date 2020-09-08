@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 
 import Image from '../../../../components/Image';
 import { Currency, PricePropType } from '../../../../utils/currency';
+import { StyledProductItem } from './styled';
 
 function ProductItem({ id, className, product, onQuantityChange }) {
   const price = new Currency(product.price);
@@ -31,7 +32,7 @@ function ProductItem({ id, className, product, onQuantityChange }) {
   };
 
   return (
-    <div id={id} className={className}>
+    <StyledProductItem id={id} className={className}>
       <div className="image-container">
         <Image source={product.thumbnail} />
       </div>
@@ -55,7 +56,7 @@ function ProductItem({ id, className, product, onQuantityChange }) {
         </button>
       </div>
       <div className="total-container">{`${total}`}</div>
-    </div>
+    </StyledProductItem>
   );
 }
 

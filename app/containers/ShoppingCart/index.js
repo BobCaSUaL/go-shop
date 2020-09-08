@@ -29,6 +29,7 @@ import messages from './messages';
 import Panel from '../../components/Panel';
 import ProductItem, { ProductPropType } from './components/ProductItem';
 import { PricePropType, Currency } from '../../utils/currency';
+import { StyledShoppingCart } from './styled';
 
 const ConnectedProductItem = connect(
   null,
@@ -69,7 +70,7 @@ export function ShoppingCart({
   );
 
   return (
-    <div>
+    <StyledShoppingCart>
       <Helmet>
         <title>{intl.formatMessage(messages.headerTitle)}</title>
         <meta
@@ -127,7 +128,7 @@ export function ShoppingCart({
           </div>
         </Panel>
       </div>
-    </div>
+    </StyledShoppingCart>
   );
 }
 
