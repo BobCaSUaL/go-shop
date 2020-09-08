@@ -92,39 +92,41 @@ export function ShoppingCart({
           className="report"
           title={intl.formatMessage(messages.reportTitle)}
         >
-          <div>
-            <ul className="shipping-method-list">
-              <div className="title">
-                {intl.formatMessage(messages.shippingMethodTitle)}
+          <div className="shipping-method-list">
+            <div className="title">
+              {intl.formatMessage(messages.shippingMethodTitle)}
+            </div>
+            {shippingMethodOptions.map(option => (
+              <div key={option.id} className="shipping-method-list-item">
+                <input
+                  id={option.id}
+                  type="radio"
+                  name="shipping-method"
+                  value={option.id}
+                  checked={!!shippingMethod && option.id === shippingMethod.id}
+                  onChange={handleChangeShippingMethodClick}
+                />
+                <div className="label-container">
+                  <label htmlFor={option.id}>{option.title}</label>
+                  <div>{option.description}</div>
+                </div>
+                <div className="price">{`${new Currency(option.price)}`}</div>
               </div>
-              {shippingMethodOptions.map(option => (
-                <li key={option.id}>
-                  <input
-                    id={option.id}
-                    type="radio"
-                    name="shipping-method"
-                    value={option.id}
-                    checked={
-                      !!shippingMethod && option.id === shippingMethod.id
-                    }
-                    onChange={handleChangeShippingMethodClick}
-                  />
-                  <div className="label-container">
-                    <label htmlFor={option.id}>{option.title}</label>
-                    <div>{option.description}</div>
-                  </div>
-                  <div>{`${new Currency(option.price)}`}</div>
-                </li>
-              ))}
-            </ul>
+            ))}
           </div>
-          <div>
-            <div>{intl.formatMessage(messages.subTotalTitle)}</div>
-            <div>{`${new Currency(productListTotal)}`}</div>
+          <div className="price-container subtotal">
+            <div className="price-label">
+              {intl.formatMessage(messages.subTotalTitle)}
+            </div>
+            <div className="price-value">{`${new Currency(
+              productListTotal,
+            )}`}</div>
           </div>
-          <div>
-            <div>{intl.formatMessage(messages.grantTotlaTitle)}</div>
-            <div>{`${new Currency(grandTotal)}`}</div>
+          <div className="price-container grandtotal">
+            <div className="price-label">
+              {intl.formatMessage(messages.grantTotlaTitle)}
+            </div>
+            <div className="price-value">{`${new Currency(grandTotal)}`}</div>
           </div>
         </Panel>
       </div>

@@ -12,7 +12,7 @@ import { StyledPanel } from './styled';
 
 function Panel({ id, className, title, children }) {
   return (
-    <StyledPanel id={id} className={className}>
+    <StyledPanel id={id} className={`panel ${className}`}>
       <H3 className="title">{title}</H3>
       <div className="content-container">{children}</div>
     </StyledPanel>
