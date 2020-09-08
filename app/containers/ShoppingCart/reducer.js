@@ -7,6 +7,20 @@ import produce from 'immer';
 import { DEFAULT_ACTION } from './constants';
 
 export const initialState = {
+  shippingMethodOptions: [
+    {
+      id: 's-100',
+      title: 'Standar shipping',
+      description: 'Shipping time around 5 days',
+      price: '0€',
+    },
+    {
+      id: 's-100',
+      title: 'Fast shipping',
+      description: 'Track you order in real time. 48h guaranteed shipment.',
+      price: '0€',
+    },
+  ],
   productList: {
     'p-6005': {
       id: 'p-6005',

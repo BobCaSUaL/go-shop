@@ -17,8 +17,12 @@ export default defineMessages({
     id: `${scope}.headerDescription`,
     defaultMessage: 'Shopping Cart',
   },
-  header: {
-    id: `${scope}.header`,
-    defaultMessage: 'This is the ShoppingCart container!',
+  productListTitle: {
+    id: `${scope}.productListTitle`,
+    defaultMessage: 'Shopping Cart',
+  },
+  reportTitle: {
+    id: `${scope}.reportTitle`,
+    defaultMessage: 'Order report',
   },
 });

@@ -116,6 +116,16 @@ export const selectShippingMethod = createSelector(
 );
 
 /**
+ * Selector for the current Shipping Method
+ * @param {State} state the global state
+ * @returns {Array.<ShippingMethod>} the shippingMethod
+ */
+export const selectShippingMethodOptions = createSelector(
+  selectShoppingCartDomain,
+  substate => substate.shippingMethodOptions,
+);
+
+/**
  * Selector for the current Payment Method
  * @param {State} state the global state
  * @returns {PaymentMethod} the paymentMethod
