@@ -22,10 +22,10 @@ function ProductItem({ id, className, product }) {
       </div>
       <div className="detail-container">
         <div className="title-container">{product.title}</div>
-        <div>{price.toString()}</div>
+        <div>{`${price}`}</div>
       </div>
       <div className="quantity-container">{product.quantity}</div>
-      <div className="total-container">{total.toString()}</div>
+      <div className="total-container">{`${total}`}</div>
     </div>
   );
 }
