@@ -4,7 +4,7 @@
  *
  */
 import produce from 'immer';
-import { DEFAULT_ACTION } from './constants';
+import { SET_PRODUCT_QUANTITY } from './constants';
 
 export const initialState = {
   shippingMethodOptions: [
@@ -48,9 +48,24 @@ export const initialState = {
 
 /* eslint-disable default-case, no-param-reassign */
 const shoppingCartReducer = (state = initialState, action) =>
-  produce(state, (/* draft */) => {
+  produce(state, draft => {
     switch (action.type) {
-      case DEFAULT_ACTION:
+      case SET_PRODUCT_QUANTITY:
+        if (!action.meta || !action.meta.id) {
+          console.warn(
+            `"${SET_PRODUCT_QUANTITY}" action must have a meta.id property`,
+          );
+          break;
+        }
+        if (!draft.productList[action.meta.id]) {
+          console.warn(
+            `"${SET_PRODUCT_QUANTITY}" acts on product with id ${
+              action.meta.id
+            }, that is not defined`,
+          );
+          break;
+        }
+        draft.productList[action.meta.id].quantity = action.payload || 0;
         break;
     }
   });

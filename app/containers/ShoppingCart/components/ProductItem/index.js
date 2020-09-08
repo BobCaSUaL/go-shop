@@ -4,16 +4,31 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
 import Image from '../../../../components/Image';
 import { Currency, PricePropType } from '../../../../utils/currency';
 
-function ProductItem({ id, className, product }) {
+function ProductItem({ id, className, product, onQuantityChange }) {
   const price = new Currency(product.price);
   const total = price.multiply(product.quantity);
+
+  const handleQuantityChange = useCallback(
+    event => {
+      onQuantityChange(Math.max(Number(event.taget.value) || 0, 0));
+    },
+    [onQuantityChange],
+  );
+
+  const quantityDecrease = () => {
+    onQuantityChange(Math.max(product.quantity - 1, 0));
+  };
+
+  const quantityIncrease = () => {
+    onQuantityChange(product.quantity + 1);
+  };
 
   return (
     <div id={id} className={className}>
@@ -24,7 +39,21 @@ function ProductItem({ id, className, product }) {
         <div className="title-container">{product.title}</div>
         <div>{`${price}`}</div>
       </div>
-      <div className="quantity-container">{product.quantity}</div>
+      <div className="quantity-container">
+        <button type="button" className="decrease" onClick={quantityDecrease}>
+          -
+        </button>
+        <input
+          id={`input-quantity-${product.id}`}
+          type="number"
+          value={product.quantity}
+          onChange={handleQuantityChange}
+        />
+        <button type="button" className="increase" onClick={quantityIncrease}>
+          {' '}
+          +{' '}
+        </button>
+      </div>
       <div className="total-container">{`${total}`}</div>
     </div>
   );
@@ -43,6 +72,7 @@ ProductItem.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   product: ProductPropType.isRequired,
+  onQuantityChange: PropTypes.func.isRequired,
 };
 
 export { ProductPropType };

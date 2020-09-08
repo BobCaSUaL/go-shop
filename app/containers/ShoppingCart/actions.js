@@ -4,10 +4,18 @@
  *
  */
 
-import { DEFAULT_ACTION } from './constants';
+import { SET_PRODUCT_QUANTITY } from './constants';
 
-export function defaultAction() {
+/**
+ * Set the quantity by product id.
+ * @param {Object} meta
+ * @param {string} meta.id the product id
+ * @param {number} payload the quantity to be set
+ */
+export function setProductQuantity(meta, payload) {
   return {
-    type: DEFAULT_ACTION,
+    type: SET_PRODUCT_QUANTITY,
+    meta,
+    payload,
   };
 }

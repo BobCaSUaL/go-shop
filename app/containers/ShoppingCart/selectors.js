@@ -76,7 +76,8 @@ export const selectProductListTotal = createSelector(
       const sanitizedGliph = glyph.toUpperCase();
       return {
         ...acc,
-        [sanitizedGliph]: (acc[sanitizedGliph] || 0) + Number(amount),
+        [sanitizedGliph]:
+          (acc[sanitizedGliph] || 0) + Number(amount) * product.quantity,
       };
     }, {});
     return Object.keys(glyphGrouped).map(

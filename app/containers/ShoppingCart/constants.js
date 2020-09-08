@@ -4,4 +4,4 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/ShoppingCart/DEFAULT_ACTION';
+export const SET_PRODUCT_QUANTITY = 'app/ShoppingCart/SET_PRODUCT_QUANTITY';

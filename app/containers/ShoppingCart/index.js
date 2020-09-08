@@ -14,6 +14,8 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+
+import * as actions from './actions';
 import {
   selectProductList,
   selectShippingMethod,
@@ -27,6 +29,22 @@ import messages from './messages';
 import Panel from '../../components/Panel';
 import ProductItem, { ProductPropType } from './components/ProductItem';
 import { PricePropType, Currency } from '../../utils/currency';
+
+const ConnectedProductItem = connect(
+  null,
+  (dispatch, ownProps) => ({
+    onQuantityChange: quantity => {
+      if (!ownProps.product) {
+        console.warn(
+          'product is not defined within ConnectedProductItem props',
+        );
+        return;
+      }
+      const { id } = ownProps.product;
+      dispatch(actions.setProductQuantity({ id }, quantity));
+    },
+  }),
+)(ProductItem);
 
 export function ShoppingCart({
   productList,
@@ -58,7 +76,7 @@ export function ShoppingCart({
         >
           {!productList ||
             productList.map(product => (
-              <ProductItem key={product.id} product={product} />
+              <ConnectedProductItem key={product.id} product={product} />
             ))}
         </Panel>
         <Panel
