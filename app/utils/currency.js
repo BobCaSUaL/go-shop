@@ -1,5 +1,15 @@
 const priceRegexpDesc = '(\\d*(\\.\\d+)?)?(.+)';
 
+export const PricePropType = (props, propName, componentName) => {
+  if (!new RegExp(priceRegexpDesc).test(props[propName])) {
+    return new Error(
+      `Invalid prop \`${propName}\` supplied to` +
+        ` \`${componentName}\`. Validation failed.`,
+    );
+  }
+  return undefined;
+};
+
 export class Currency {
   fixed = 2;
 

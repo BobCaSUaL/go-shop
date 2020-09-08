@@ -9,8 +9,7 @@ import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
 import Image from '../../../../components/Image';
-import { Currency } from '../../../../utils/currency';
-import { priceRegexpDesc } from '../../selectors';
+import { Currency, PricePropType } from '../../../../utils/currency';
 
 function ProductItem({ id, className, product }) {
   const price = new Currency(product.price);
@@ -31,25 +30,20 @@ function ProductItem({ id, className, product }) {
   );
 }
 
+const ProductPropType = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  price: PricePropType,
+  quantity: PropTypes.number.isRequired,
+  maxQuantity: PropTypes.number,
+});
+
 ProductItem.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
-  product: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    thumbnail: PropTypes.string,
-    title: PropTypes.string.isRequired,
-    price: (props, propName, componentName) => {
-      if (!new RegExp(priceRegexpDesc).test(props[propName])) {
-        return new Error(
-          `Invalid prop \`${propName}\` supplied to` +
-            ` \`${componentName}\`. Validation failed.`,
-        );
-      }
-      return undefined;
-    },
-    quantity: PropTypes.number.isRequired,
-    maxQuantity: PropTypes.number,
-  }).isRequired,
+  product: ProductPropType.isRequired,
 };
 
+export { ProductPropType };
 export default memo(ProductItem);
