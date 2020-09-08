@@ -90,5 +90,21 @@ describe('shoppingCart selectors', () => {
       };
       expect(selectGrandTotal(mockedState)).toEqual(['320.0625€']);
     });
+    it('Should work also without any shippingMethod selected', () => {
+      const shoppingCartState = {
+        productList: {
+          [product1.id]: product1,
+          [product2.id]: product2,
+        },
+        promoCode: null,
+        VAT: 0.25,
+        shippingMethod: null,
+        paymentMethod: null,
+      };
+      const mockedState = {
+        shoppingCart: shoppingCartState,
+      };
+      expect(selectGrandTotal(mockedState)).toEqual(['320.0625€']);
+    });
   });
 });

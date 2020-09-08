@@ -18,7 +18,7 @@ export const initialState = {
       id: 's-101',
       title: 'Fast shipping',
       description: 'Track you order in real time. 48h guaranteed shipment.',
-      price: '0€',
+      price: '20€',
     },
   ],
   productList: {

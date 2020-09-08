@@ -176,12 +176,13 @@ export const selectGrandTotal = createSelector(
     }
 
     /** @type {Object} the shippingMethodTotal total gouped by glyph */
-    const [, shippingAmount, , shippingGlyph] = `${shippingMethod.price}`.match(
-      new RegExp(priceRegexpDesc, 'i'),
-    );
-    const shippingMethodTotal = {
-      [shippingGlyph.toUpperCase()]: shippingAmount,
-    };
+    const shippingMethodTotal = {};
+    if (shippingMethod) {
+      const [, amount, , glyph] = `${shippingMethod.price}`.match(
+        new RegExp(priceRegexpDesc, 'i'),
+      );
+      shippingMethodTotal[glyph.toUpperCase()] = Number(amount);
+    }
 
     return glyphList.map(glyph => {
       const total =
