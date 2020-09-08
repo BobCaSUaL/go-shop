@@ -18,6 +18,7 @@ import {
   selectProductList,
   selectShippingMethod,
   selectShippingMethodOptions,
+  selectProductListTotal,
 } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -28,6 +29,7 @@ import { PricePropType, Currency } from '../../utils/currency';
 
 export function ShoppingCart({
   productList,
+  productListTotal,
   shippingMethodOptions,
   shippingMethod,
 }) {
@@ -63,6 +65,9 @@ export function ShoppingCart({
         >
           <div onChange={onChangeShippingMethod}>
             <ul className="shipping-method-list">
+              <div className="title">
+                {intl.formatMessage(messages.shippingMethodTitle)}
+              </div>
               {shippingMethodOptions.map(option => (
                 <li key={option.id}>
                   <input
@@ -81,6 +86,10 @@ export function ShoppingCart({
               ))}
             </ul>
           </div>
+          <div>
+            <div>{intl.formatMessage(messages.subTotalTitle)}</div>
+            <div>{`${new Currency(productListTotal)}`}</div>
+          </div>
         </Panel>
       </div>
     </div>
@@ -96,12 +105,14 @@ const ShippingMethodProptype = PropTypes.shape({
 
 ShoppingCart.propTypes = {
   productList: PropTypes.arrayOf(ProductPropType.isRequired).isRequired,
+  productListTotal: PricePropType,
   shippingMethodOptions: PropTypes.arrayOf(ShippingMethodProptype).isRequired,
   shippingMethod: ShippingMethodProptype,
 };
 
 const mapStateToProps = createStructuredSelector({
   productList: selectProductList,
+  productListTotal: selectProductListTotal,
   shippingMethod: selectShippingMethod,
   shippingMethodOptions: selectShippingMethodOptions,
 });

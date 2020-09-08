@@ -25,4 +25,12 @@ export default defineMessages({
     id: `${scope}.reportTitle`,
     defaultMessage: 'Order report',
   },
+  shippingMethodTitle: {
+    id: `${scope}.shippingMethodTitle`,
+    defaultMessage: 'Shipping Method',
+  },
+  subTotalTitle: {
+    id: `${scope}.subTotalTitle`,
+    defaultMessage: 'Subtotal',
+  },
 });
