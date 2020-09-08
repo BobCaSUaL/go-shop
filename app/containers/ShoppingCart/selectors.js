@@ -40,7 +40,7 @@ import { initialState } from './reducer';
  * @property {string} title - read only
  */
 
-const priceRegexpDesc = '(\\d*(\\.\\d+)?)?(.+)';
+export const priceRegexpDesc = '(\\d*(\\.\\d+)?)?(.+)';
 
 /**
  * Direct selector to the shoppingCart state domain
