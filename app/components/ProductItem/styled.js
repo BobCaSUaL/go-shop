@@ -8,7 +8,15 @@ export const StyledProductItem = styled.div`
   &:not(:last-child) {
     margin-bottom: 12px;
   }
+
+  & > .detail-container {
+    flex: 5;
+    margin: 0 16px;
+  }
   & > .quantity-container {
+    flex: 1;
+    min-width: 8rem;
+    text-align: center;
     & > input {
       width: 3rem;
       text-align: center;
@@ -22,5 +30,10 @@ export const StyledProductItem = styled.div`
         -moz-appearance: textfield;
       }
     }
+  }
+
+  & > .total-container {
+    min-width: 4rem;
+    text-align: end;
   }
 `;

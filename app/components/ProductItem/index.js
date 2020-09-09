@@ -8,8 +8,8 @@ import React, { memo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
-import Image from '../../../../components/Image';
-import { Currency, PricePropType } from '../../../../utils/currency';
+import Image from '../Image';
+import { Currency, PricePropType } from '../../utils/currency';
 import { StyledProductItem } from './styled';
 
 function ProductItem({ id, className, product, onQuantityChange }) {

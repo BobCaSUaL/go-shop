@@ -13,7 +13,6 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
 
 import * as actions from './actions';
 import {
@@ -23,11 +22,12 @@ import {
   selectProductListTotal,
   selectGrandTotal,
 } from './selectors';
-import reducer from './reducer';
+// *** reducer already mounted at start time ***
+// import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import Panel from '../../components/Panel';
-import ProductItem, { ProductPropType } from './components/ProductItem';
+import ProductItem, { ProductPropType } from '../../components/ProductItem';
 import { PricePropType, Currency } from '../../utils/currency';
 import { StyledShoppingCart } from './styled';
 
@@ -55,7 +55,7 @@ export function ShoppingCart({
   onShippingMethodChange,
   grandTotal,
 }) {
-  useInjectReducer({ key: 'shoppingCart', reducer });
+  // *** mounted by App container as this store is needed by the entire application ***
   useInjectSaga({ key: 'shoppingCart', saga });
 
   const intl = useIntl();

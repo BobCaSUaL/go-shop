@@ -4,7 +4,24 @@
  *
  */
 
-import { SET_PRODUCT_QUANTITY, SET_SHIPPING_METHOD } from './constants';
+import {
+  PUSH_PRODUCT,
+  SET_PRODUCT_QUANTITY,
+  SET_SHIPPING_METHOD,
+} from './constants';
+
+/**
+ * Add a new product to the basket.
+ * @param {null} meta
+ * @param {import('./selectors').ShoppingCartProduct} payload the quantity to be set
+ */
+export function pushProduct(meta, payload) {
+  return {
+    type: PUSH_PRODUCT,
+    meta,
+    payload,
+  };
+}
 
 /**
  * Set the quantity by product id.

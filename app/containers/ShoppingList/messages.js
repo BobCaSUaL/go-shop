@@ -9,8 +9,8 @@ import { defineMessages } from 'react-intl';
 export const scope = 'app.containers.ShoppingList';
 
 export default defineMessages({
-  header: {
-    id: `${scope}.header`,
-    defaultMessage: 'This is the ShoppingList container!',
+  listTitle: {
+    id: `${scope}.listTitle`,
+    defaultMessage: 'Shopping List',
   },
 });

@@ -4,7 +4,11 @@
  *
  */
 import produce from 'immer';
-import { SET_PRODUCT_QUANTITY, SET_SHIPPING_METHOD } from './constants';
+import {
+  SET_PRODUCT_QUANTITY,
+  SET_SHIPPING_METHOD,
+  PUSH_PRODUCT,
+} from './constants';
 
 export const initialState = {
   shippingMethodOptions: [
@@ -50,6 +54,15 @@ export const initialState = {
 const shoppingCartReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
+      case PUSH_PRODUCT:
+        if (!action.payload || !action.payload.id) {
+          console.warn(
+            `"${PUSH_PRODUCT}" action must have a payload with an id property`,
+          );
+          break;
+        }
+        draft.productList[action.payload.id] = action.payload;
+        break;
       case SET_PRODUCT_QUANTITY:
         if (!action.meta || !action.meta.id) {
           console.warn(
