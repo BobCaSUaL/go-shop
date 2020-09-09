@@ -12,7 +12,7 @@ import Image from '../Image';
 import { Currency, PricePropType } from '../../utils/currency';
 import { StyledProductItem } from './styled';
 
-function ProductItem({ id, className, product, onQuantityChange }) {
+function ProductItem({ id, className, product, actions, onQuantityChange }) {
   const price = new Currency(product.price);
   const total = price.multiply(product.quantity);
 
@@ -55,6 +55,7 @@ function ProductItem({ id, className, product, onQuantityChange }) {
           +{' '}
         </button>
       </div>
+      {!actions || <div className="actions-container">{actions}</div>}
       <div className="total-container">{`${total}`}</div>
     </StyledProductItem>
   );
@@ -73,6 +74,10 @@ ProductItem.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   product: ProductPropType.isRequired,
+  actions: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
   onQuantityChange: PropTypes.func.isRequired,
 };
 

@@ -32,6 +32,10 @@ export const StyledProductItem = styled.div`
     }
   }
 
+  & > .actions-container {
+    margin: 0 16px;
+  }
+
   & > .total-container {
     min-width: 4rem;
     text-align: end;

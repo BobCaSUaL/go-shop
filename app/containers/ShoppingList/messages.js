@@ -13,4 +13,8 @@ export default defineMessages({
     id: `${scope}.listTitle`,
     defaultMessage: 'Shopping List',
   },
+  addToCart: {
+    id: `${scope}.addToCart`,
+    defaultMessage: 'Add to cart',
+  },
 });

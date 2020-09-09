@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet';
 import { useIntl } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { withRouter } from 'react-router-dom';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -22,6 +23,7 @@ import { selectProductList } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
+import { StyledShoppingList } from './styled';
 
 const ConnectedProductItem = connect(
   null,
@@ -46,6 +48,39 @@ const ConnectedProductItem = connect(
   }),
 )(ProductItem);
 
+const ConnectedAddButton = compose(
+  withRouter,
+  connect(
+    null,
+    (dispatch, ownProps) => ({
+      onClick: () => {
+        const { product } = ownProps;
+        if (!product) {
+          console.warn(
+            'product is not defined within ConnectedProductItem props',
+          );
+          return;
+        }
+        const { quantity } = product;
+        if (quantity <= 0) {
+          dispatch(
+            shoppingCartActions.pushProduct(null, {
+              ...product,
+              quantity: quantity + 1,
+            }),
+          );
+        } else {
+          const { id } = product;
+          dispatch(
+            shoppingCartActions.setProductQuantity({ id }, quantity + 1),
+          );
+        }
+        ownProps.history.push('/cart');
+      },
+    }),
+  ),
+)(({ product, ...props }) => <button type="button" {...props} />);
+
 export function ShoppingList({ productList }) {
   useInjectReducer({ key: 'shoppingList', reducer });
   useInjectSaga({ key: 'shoppingList', saga });
@@ -53,18 +88,28 @@ export function ShoppingList({ productList }) {
   const intl = useIntl();
 
   return (
-    <div>
+    <StyledShoppingList>
       <Helmet>
         <title>ShoppingList</title>
         <meta name="description" content="Description of ShoppingList" />
       </Helmet>
-      <Panel title={intl.formatMessage(messages.listTitle)}>
-        {!productList ||
-          productList.map(product => (
-            <ConnectedProductItem key={product.id} product={product} />
-          ))}
-      </Panel>
-    </div>
+      <div className="content-container">
+        <Panel title={intl.formatMessage(messages.listTitle)}>
+          {!productList ||
+            productList.map(product => (
+              <ConnectedProductItem
+                key={product.id}
+                product={product}
+                actions={
+                  <ConnectedAddButton product={product}>
+                    {intl.formatMessage(messages.addToCart)}
+                  </ConnectedAddButton>
+                }
+              />
+            ))}
+        </Panel>
+      </div>
+    </StyledShoppingList>
   );
 }
 
